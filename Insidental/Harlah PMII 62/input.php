@@ -1,15 +1,3 @@
-<?php
-$input = isset($_POST['pembaca']) ? $_POST['pembaca'] : "";
-$pembaca = explode("\n", str_replace("\r", "", $input));
-$jsonString = file_get_contents('pembaca.json');
-$data = json_decode($jsonString, true);
-// var_dump($data);
-// var_dump($pembaca);
-
-//I dont check for empty() incase your app allows a 0 as ID.
-// var_dump($data);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,15 +11,6 @@ $data = json_decode($jsonString, true);
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
     <title>PMII Bumiayu</title>
-    <style>
-    .kartu {
-        margin-top: 10px;
-    }
-
-    .d-grid {
-        align-items: left;
-    }
-    </style>
 </head>
 
 <body class="bg-primary">
@@ -49,50 +28,43 @@ $data = json_decode($jsonString, true);
             </div>
         </div>
         <div class="row mt-2 pt-2">
-            <div class="col">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <?php
-                        if (strlen($input) == 0) {
-                            echo "<a href='index.php' class='btn btn-warning' tabindex='-1' role='button'>Tidak ada input, kembali</a>";
-                        } else {
-                            shuffle($pembaca);
-                            foreach ($pembaca as $darus) {
-                                array_push($data, $darus);
-                            }
-                            $datajson = json_encode($data);
-                            file_put_contents('pembaca.json', $datajson);
-                            echo "<a href='index.php' class='btn btn-warning' tabindex='-1' role='button'>Kembali</a>";
-                        }
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-2 pt-2 mb-3">
-            <?php
-            $juz = 1;
-            foreach ($data as $daruser) { ?>
-            <div class="col-md-3 kartu">
+            <div class="col-lg-6 mx-auto">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-grid gap-2">
-                            <div class="card shadow-lg bg-warning">
+                            <div class="card shadow-lg">
                                 <div class="card-body">
-                                    <span class="badge bg-danger">Juz <?= $juz; ?></span> <?= $daruser; ?>
+                                    <form action="index.php" method="POST">
+                                        <div class="mb-3">
+                                            <div class="form-floating">
+                                                <textarea class="form-control"
+                                                    placeholder="Masukkan Nama-nama sahabat-sahabati yang mengikuti tadarus disini"
+                                                    id="floatingTextarea2" style="height: 200px"
+                                                    name="pembaca"></textarea>
+                                                <label for="floatingTextarea2">List Pembaca</label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="floatingKey"
+                                                    placeholder="Masukkan key disini" name="key">
+                                                <label for="floatingKey">Kunci Akses</label>
+                                            </div>
+                                        </div>
+                                        <div class="float-start">
+                                            <button type="submit" class="btn btn-primary">Gacha</button>
+                                        </div>
+                                        <div class="float-end">
+                                            <a href="index.php" class="btn btn-primary" tabindex="-1"
+                                                role="button">Kembali</a>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <?php if ($juz == 29) {
-                    $juz = 1;
-                } else {
-
-                    $juz++;
-                }
-            } ?>
         </div>
     </div>
     <!-- Optional JavaScript; choose one of the two! -->
