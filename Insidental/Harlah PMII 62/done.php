@@ -8,7 +8,10 @@ $key = isset($_POST['key']) ? $_POST['key'] : '';
 
 if (isset($_POST['key'])) {
     if ($key == $pairkey[$id - 1]) {
-        var_dump($daruser);
+        $data[$id - 1]['done'] = true;
+        $datajson = json_encode($data);
+        file_put_contents('pembaca.json', $datajson);
+        echo "<script>window.location = 'index.php'</script>";
     }
 }
 ?>
@@ -21,8 +24,7 @@ if (isset($_POST['key'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
     <title>PMII Bumiayu</title>
 </head>
@@ -50,27 +52,24 @@ if (isset($_POST['key'])) {
                                 <div class="card-body">
                                     <?php
                                     if (!isset($_GET['id'])) { ?>
-                                    <div class="text-center">
-                                        <a href="index.php" class="btn btn-primary" tabindex="-1"
-                                            role="button">Kembali</a>
-                                    </div>
+                                        <div class="text-center">
+                                            <a href="index.php" class="btn btn-primary" tabindex="-1" role="button">Kembali</a>
+                                        </div>
                                     <?php } else { ?>
-                                    <form action="" method="POST">
-                                        <div class="mb-3">
-                                            <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingKey"
-                                                    placeholder="Masukkan key disini" name="key">
-                                                <label for="floatingKey">Kunci Akses</label>
+                                        <form action="" method="POST">
+                                            <div class="mb-3">
+                                                <div class="form-floating">
+                                                    <input type="text" class="form-control" id="floatingKey" placeholder="Masukkan key disini" name="key">
+                                                    <label for="floatingKey">Kunci Akses</label>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="float-start">
-                                            <button type="submit" class="btn btn-primary">Selesai</button>
-                                        </div>
-                                        <div class="float-end">
-                                            <a href="index.php" class="btn btn-primary" tabindex="-1"
-                                                role="button">Kembali</a>
-                                        </div>
-                                    </form>
+                                            <div class="float-start">
+                                                <button type="submit" class="btn btn-primary">Selesai</button>
+                                            </div>
+                                            <div class="float-end">
+                                                <a href="index.php" class="btn btn-primary" tabindex="-1" role="button">Kembali</a>
+                                            </div>
+                                        </form>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -83,8 +82,7 @@ if (isset($_POST['key'])) {
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
