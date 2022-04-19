@@ -1,4 +1,19 @@
-<?php include('layout/header.php');
+<?php
+include('layout/header.php');
+$input = [
+    'key' => isset($_POST['key']) ? $_POST['key'] : '',
+    'judul' => isset($_POST['judul']) ? $_POST['judul'] : '',
+    'subjudul' => isset($_POST['subjudul']) ? $_POST['subjudul'] : '',
+    'isreset' => isset($_POST['isreset']) ? true : false,
+];
+$galat = false;
+if (isset($_POST['key'])) {
+    if ($input['key'] == $data['setting']['key']['access']) {
+        $galat = false;
+    } else {
+        $galat = true;
+    }
+}
 ?>
 <div class="row mt-2 pt-2">
     <div class="col-lg-6 mx-auto">
@@ -7,11 +22,17 @@
                 <div class="d-grid gap-2">
                     <div class="card shadow-lg">
                         <div class="card-body">
-                            <form action="index.php" method="POST">
+                            <form method="POST">
                                 <div class="mb-3">
                                     <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Masukkan Nama-nama sahabat-sahabati yang mengikuti tadarus disini" id="floatingTextarea2" style="height: 200px" name="pembaca" required></textarea>
-                                        <label for="floatingTextarea2">List Pembaca</label>
+                                        <input type="text" class="form-control" id="floatingJudul" placeholder="Masukkan key disini" name="judul" value="<?= $data['setting']['interface']['judul']; ?>" required>
+                                        <label for="floatingJudul">Judul</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingSubJudul" placeholder="Masukkan key disini" name="subjudul" value="<?= $data['setting']['interface']['subjudul']; ?>" required>
+                                        <label for="floatingSubJudul">Sub Judul</label>
                                     </div>
                                 </div>
                                 <div class="mb-3">
@@ -20,8 +41,14 @@
                                         <label for="floatingKey">Kunci Akses</label>
                                     </div>
                                 </div>
+                                <div class="mb-3">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="isreset">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Reset Data
+                                    </label>
+                                </div>
                                 <div class="float-start">
-                                    <button type="submit" class="btn btn-primary">Gacha</button>
+                                    <button type="submit" class="btn btn-primary">Reset</button>
                                 </div>
                                 <div class="float-end">
                                     <a href="index.php" class="btn btn-primary" tabindex="-1" role="button">Kembali</a>
