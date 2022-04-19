@@ -5,13 +5,16 @@ $data = json_decode($jsonString, true);
 $id = isset($_GET['id']) ? $_GET['id'] : '';
 $daruser = $data[$id - 1];
 $key = isset($_POST['key']) ? $_POST['key'] : '';
-
+$galat = false;
 if (isset($_POST['key'])) {
     if ($key == $pairkey[$id - 1]) {
+        $galat = false;
         $data[$id - 1]['done'] = true;
         $datajson = json_encode($data);
         file_put_contents('pembaca.json', $datajson);
         echo "<script>window.location = 'index.php'</script>";
+    } else {
+        $galat = true;
     }
 }
 ?>
@@ -50,7 +53,13 @@ if (isset($_POST['key'])) {
                         <div class="d-grid gap-2">
                             <div class="card shadow-lg">
                                 <div class="card-body">
-                                    <?php
+                                    <?php if ($galat) { ?>
+                                        <div class="text-center">
+                                            <div class="alert alert-danger" role="alert">
+                                                Kunci Akses yang anda masukkan tidak valid !
+                                            </div>
+                                        </div>
+                                    <?php }
                                     if (!isset($_GET['id'])) { ?>
                                         <div class="text-center">
                                             <a href="index.php" class="btn btn-primary" tabindex="-1" role="button">Kembali</a>
