@@ -9,17 +9,19 @@ include 'data/dataset.php'; ?>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
     <title>Tadarus | PMII Bumiayu</title>
+    <link rel="shortcut icon" href="<?= baseUrl(); ?>img/logo.png" type="image/x-icon">
     <style>
-        .kartu {
-            margin-top: 10px;
-        }
+    .kartu {
+        margin-top: 10px;
+    }
 
-        .d-grid {
-            align-items: left;
-        }
+    .d-grid {
+        align-items: left;
+    }
     </style>
 </head>
 
@@ -30,9 +32,9 @@ include 'data/dataset.php'; ?>
                 <div class="card bg-warning text-center">
                     <div class="card-body">
                         <h4 class="shadow-lg">
-                            <?= $data['setting']['interface']['judul']; ?>
+                            <?= $setting['interface']['judul']; ?>
                         </h4>
-                        <h6><?= $data['setting']['interface']['subjudul']; ?></h6>
+                        <h6><?= $setting['interface']['subjudul']; ?></h6>
                     </div>
                 </div>
             </div>

@@ -6,5 +6,8 @@
   },
   "key": {
     "access": "jbW7YAJRPQ5sM3Lw"
-  }
+  }, 
+    "utility": {
+      "baseurl": "http://tadarus.pmiibumiayu/"
+    }
 }
